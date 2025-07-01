@@ -20,8 +20,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t artifacts .'
-                sh 'docker tag artifacts:latest ${ECR_REPO}:${IMAGE_TAG}'
+                sh '''
+                unset DOCKER_HOST
+                sh docker build -t artifacts .
+                sh docker tag artifacts:latest ${ECR_REPO}:${IMAGE_TAG}
+                '''            
             }
         }
 
