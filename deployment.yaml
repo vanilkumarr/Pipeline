@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artifacts-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: artifacts
+  template:
+    metadata:
+      labels:
+        app: artifacts
+    spec:
+      containers:
+        - name: artifacts
+          image: public.ecr.aws/y8b4p2z0/artifacts:latest
+          ports:
+            - containerPort: 8080  # Change if your app uses a different port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: artifacts-service
+spec:
+  type: NodePort
+  selector:
+    app: artifacts
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080  # Must match containerPort above
+      nodePort: 30080   # Optional: Kubernetes will auto-assign if you skip this
