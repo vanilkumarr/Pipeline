@@ -50,6 +50,13 @@ pipeline {
                 sh 'docker push ${ECR_REPO}:${IMAGE_TAG}'
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                withKubeConfig(credentialsId: 'k8s-jenkins-config') {
+                    sh 'kubectl apply -f deployment.yaml'
+                }
+            }
+        }
     }
 
     post {
