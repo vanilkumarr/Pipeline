@@ -16,7 +16,7 @@ spec:
         - name: artifacts
           image: public.ecr.aws/y8b4p2z0/artifacts:latest
           ports:
-            - containerPort: 8080  # Change if your app uses a different port
+            - containerPort: 9090  # Change if your app uses a different port
 
 ---
 apiVersion: v1
@@ -30,5 +30,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080  # Must match containerPort above
+      targetPort: 9090  # Must match containerPort above
       nodePort: 30080   # Optional: Kubernetes will auto-assign if you skip this
