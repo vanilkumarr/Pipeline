@@ -31,7 +31,10 @@ pipeline {
             parallel {
                 stage("Build") {
                     steps {
-                        sh 'mvn clean package'
+                        dir('old_package'){
+                            sh 'mvn clean package'
+                        }
+                        
                     }
                 }
                 stage("Test") {
