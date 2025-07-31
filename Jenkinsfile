@@ -52,7 +52,6 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                timeout(time: 15, unit: 'SECONDS')
                 echo "Deploying application..."
                     
                 dir('old_pipeline') {
