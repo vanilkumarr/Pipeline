@@ -31,7 +31,7 @@ pipeline {
             parallel {
                 stage("Build") {
                     steps {
-                        dir('old_package'){
+                        dir('old_pipeline'){
                             sh 'mvn clean package'
                         }
                         
