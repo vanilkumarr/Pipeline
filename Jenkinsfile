@@ -52,13 +52,14 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                input message: 'Approve Deployment?', ok: 'Deploy'
                 timeout(time: 15, unit: 'HOURS') {
-                    echo "Deploying application..."
-                    
-                    dir('old_pipeline') {
-                    sh 'mvn deploy'
+                    input message: 'Approve Deployment?', ok: 'Deploy'
                 }
+                echo "Deploying application..."
+                    
+                dir('old_pipeline') {
+                        sh 'mvn deploy'
+                
                 }
             }
         }
