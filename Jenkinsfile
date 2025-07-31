@@ -55,7 +55,10 @@ pipeline {
                 input message: 'Approve Deployment?', ok: 'Deploy'
                 timeout(time: 15, unit: 'SECONDS') {
                     echo "Deploying application..."
+                    
+                    dir('old_pipeline') {
                     sh 'mvn deploy'
+                }
                 }
             }
         }
