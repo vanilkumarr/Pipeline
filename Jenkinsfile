@@ -52,7 +52,7 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                timeout(time: 15, unit: 'HOURS') {
+                timeout(time: 15, unit: 'SECONDS') {
                     input message: 'Approve Deployment?', ok: 'Deploy'
                 }
                 echo "Deploying application..."
